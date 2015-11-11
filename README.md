@@ -6,6 +6,7 @@
 
 TODO:
 =====
+* Auth0 implementation => https://auth0.com/blog/2015/05/14/creating-your-first-real-world-angular-2-app-from-authentication-to-calling-an-api-and-everything-in-between/
 * Implement Swagger
 * Break into micro services if possible
 * Use correlation ID's (e.g. on button click... pass ID through services)
@@ -13,3 +14,7 @@ TODO:
 * Kubernetes
 * Think in ctx of services... a user in 1 ctx <> another ctx, don't pass all data everywhere
 
+
+DONE:
+=====
+* egghead.io lessons => https://egghead.io/series/angular-2-fundamentals

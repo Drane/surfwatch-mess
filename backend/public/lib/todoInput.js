@@ -15,24 +15,32 @@ if (typeof __metadata !== "function") __metadata = function (k, v) {
 var angular2_1 = require("angular2/angular2");
 var todoService_1 = require("./todoService");
 var TodoInput = (function () {
-    //todoService; //using @Inject
     function TodoInput(todoService //NOT using @Inject
         ) {
         this.todoService = todoService;
+        //todoService; //using @Inject
+        //todoModel;
+        this.todoModel = new todoService_1.TodoModel();
         //this.todoService = todoService; //using @Inject
         console.log(todoService);
     }
-    TodoInput.prototype.onClick = function (event, value) {
+    /*onClick(event, value){
         this.todoService.addTodo(value);
         //console.log("clicked:" + value, event);
         console.log(this.todoService.todos);
+    }*/
+    TodoInput.prototype.onSubmit = function () {
+        this.todoService.addTodo(this.todoModel);
+        this.todoModel = new todoService_1.TodoModel();
     };
     TodoInput = __decorate([
         angular2_1.Component({
             selector: 'todo-input'
         }),
         angular2_1.View({
-            template: "\n        <input type=\"text\" #log-me>\n        <button (click)=\"onClick($event, logMe.value)\">Log Input</button>\n    "
+            directives: [angular2_1.FORM_DIRECTIVES],
+            styles: ["\n        form{\n            border-bottom: 1px solid black;\n            display: flex;\n            flex-direction: column;\n            margin-bottom: 10px;\n        }\n    "],
+            template: "\n        <!--<input type=\"text\" #log-me>\n        <button (click)=\"onClick($event, logMe.value)\">Log Input</button>-->\n        <form (ng-submit)=\"onSubmit()\">\n            <!--<input type=\"text\" [(ng-model)]=\"todoModel\"> {{todoModel}}-->\n            Title: <input type=\"text\" #title [(ng-model)]=\"todoModel.title\">\n            Action: <input type=\"text\" [(ng-model)]=\"todoModel.action\">\n            <button type=\"submit\" (click)=\"title.focus()\">Add Todo</button>\n        </form>\n    "
         }), 
         __metadata('design:paramtypes', [todoService_1.TodoService])
     ], TodoInput);
