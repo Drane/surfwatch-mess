@@ -12,10 +12,14 @@ export class TodoService{
         new TodoModel("sleep", "zzzz"),
         new TodoModel("code", "type type")
     ];
+
+
+
     //addTodo(value:any):void {
     addTodo(value:TodoModel):void {
         this.todos.push(value);
     }
+
 }
 
 export class TodoModel{

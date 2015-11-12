@@ -13,5 +13,8 @@
     "angular2": "2.0.0-alpha.44",
     "systemjs": "0.19.2",
     "angular2-jwt": "^0.1.2"
+  },
+  "devDependencies": {
+    "firebase-tools": "^2.1.0"
   }
 }

@@ -2,10 +2,14 @@
 
 -->
 
+*SurfWatch* - an Angular2 + NodeJS app in progress...
+======================================================
+
 ![Alt text](_stuff/readme-img/app-architecture.png "App Architecture")
 
 TODO:
-=====
+-----
+* Add user based security https://www.firebase.com/docs/security/guide/user-security.html
 * Auth0 implementation => https://auth0.com/blog/2015/05/14/creating-your-first-real-world-angular-2-app-from-authentication-to-calling-an-api-and-everything-in-between/
 * Implement Swagger
 * Break into micro services if possible
@@ -16,5 +20,5 @@ TODO:
 
 
 DONE:
-=====
+-----
 * egghead.io lessons => https://egghead.io/series/angular-2-fundamentals
