@@ -4,5 +4,8 @@
 System.config({
     "baseURL": "/",
     "defaultJSExtensions": true,
-    "transpiler": "typescript"
+    "transpiler": "typescript",
+    "map": {
+        "angular2-jwt": "node_modules/angular2-jwt"
+    }
 });
