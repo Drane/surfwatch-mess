@@ -2,8 +2,8 @@
 
 -->
 
-*SurfWatch* - an Angular2 + NodeJS app in progress...
-======================================================
+*SurfWatch* - Angular2/NodeJS app in progress...
+================================================
 
 ![Alt text](_stuff/readme-img/app-architecture.png "App Architecture")
 
