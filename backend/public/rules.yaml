@@ -1,0 +1,32 @@
+functions:
+  - isLoggedIn(): auth.uid !== null
+  - isUser(username): auth.username === username
+  - createOnly():      next.exists() && !prev.exists()
+  - deleteOnly():      prev.exists() && !next.exists()
+  - createOrDelete():  createOnly() || deleteOnly()
+
+schema: {}
+
+access:
+  - location: "/"
+    read:  true
+    write: true && isLoggedIn()
+
+  - location: "/users/$userid/"
+    write:    isUser($userid)
+
+schema:
+  type: object
+  properties:
+#    string_child:  {type: string}
+#    boolean_child: {type: boolean}
+#    number_child:  {type: number}
+    users: # the users subtree is a collection of users
+      type: object
+      $userid: # wildchild expression of many children
+        properties:
+          id:
+            type: string
+            constraint: next == $userid
+
+        constraint: (!prev.exists())

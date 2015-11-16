@@ -27,10 +27,7 @@ var FirebaseStore = (function () {
             }
             else {
                 console.log("FirebaseStore::authWithTwitter() Authenticated successfully with payload:", authData);
-                _this.authData = authData;
-                _this.isLoggedIn = true;
-                _this.displayName = authData.twitter.displayName;
-                _this.profileImageURL = authData.twitter.profileImageURL;
+                _this.afterLogin(authData);
             }
         });
     };
@@ -38,6 +35,51 @@ var FirebaseStore = (function () {
         console.log("FirebaseStore::signOut()");
         this.ref.unauth();
         this.isLoggedIn = false;
+    };
+    FirebaseStore.prototype.register = function (email, password) {
+        console.log("FirebaseStore::register(email: %s password: %s)", email, password);
+        this.ref.createUser({
+            email: email,
+            password: password
+        }, function (error, userData) {
+            if (error) {
+                switch (error.code) {
+                    case "EMAIL_TAKEN":
+                        console.error("The new user account cannot be created because the email is already in use.");
+                        break;
+                    case "INVALID_EMAIL":
+                        console.error("The specified email is not a valid email.");
+                        break;
+                    default:
+                        console.error("Error creating user:", error);
+                }
+            }
+            else {
+                console.log("Successfully created user account with uid:", userData.uid);
+            }
+        });
+    };
+    FirebaseStore.prototype.login = function (email, password) {
+        console.log("FirebaseStore::login(email: %s password: %s)", email, password);
+        this.ref.authWithPassword({
+            email: email,
+            password: password
+        }, function (error, authData) {
+            if (error) {
+                console.error("Login Failed!", error);
+            }
+            else {
+                console.log("Authenticated successfully with payload:", authData);
+                this.afterLogin(authData); //bug with this ctx
+            }
+        }.bind(this), { remember: "sessionOnly" });
+    };
+    FirebaseStore.prototype.afterLogin = function (authData) {
+        console.log("FirebaseStore::afterLogin()", authData);
+        this.authData = authData;
+        this.isLoggedIn = true;
+        this.displayName = authData[authData.provider].displayName || authData[authData.provider].email;
+        this.profileImageURL = authData[authData.provider].profileImageURL;
     };
     return FirebaseStore;
 })();

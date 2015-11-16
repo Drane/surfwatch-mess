@@ -1,0 +1,18 @@
+{
+  "rules":{
+    ".write":"false",
+    ".read":"true",
+    "users": {
+      ".write":"false",
+      ".read":"true",
+      "$userid": {
+        ".write":"(((!data.exists()&&newData.child('id').val()==$userid&&(!newData.child('id').exists()||newData.child('id').isString())&&(auth.uid!==null||auth.$userid===$userid))))",
+        ".read":"true",
+        "id": {
+          ".write":"(((!data.parent().exists()&&newData.val()==$userid&&(!newData.exists()||newData.isString())&&(auth.uid!==null||auth.$userid===$userid))))",
+          ".read":"true"
+        }
+      }
+    }
+  }
+}

@@ -27,6 +27,19 @@ import {FirebaseEventPipe} from "./pipes/firebasepipe";
     `],
     template: `
         <div>
+            <!--<div class="col s12">
+                <div class="input-field col s6">-->
+                    <input #email type="email" placeholder="email">
+                    <input #password type="password" placeholder="password">
+                    <button (click)="fb.register(email.value, password.value)">Register</button>
+
+                    <input #login-email type="email" placeholder="email" value="jochen.szostek@gmail.com">
+                    <input #login-password type="password" placeholder="password" value="ZpdtaJKJ46PgkyZf">
+                    <button (click)="fb.login.apply(fb, [loginEmail.value, loginPassword.value])">Login</button>
+                    <!--<label for="email">Email</label>-->
+<!--                </div>
+            </div>
+-->
             <!--<todo-input></todo-input>
             <todo-list></todo-list>
             <button (click)="getThing()">getThing</button>-->
