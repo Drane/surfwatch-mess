@@ -2,16 +2,31 @@
   "name": "nodetsproject",
   "version": "1.0.0",
   "description": "A starter project that lets you write nodejs code in typescript. Debugging in VSCode works too",
-  "main": "index.js",
+  "main": "server.js",
   "scripts": {
-    "build": "tsc"
+    "build": "tsc",
+    "start": "node src/server.js",
+    "test": "mocha --require ts-node/register test/**/*Spec.ts"
   },
-  "dependencies": {},
+  "dependencies": {
+    "body-parser": "^1.18.2",
+    "debug": "^3.1.0",
+    "express": "^4.16.3",
+    "mongoose": "^5.0.16",
+    "morgan": "^1.9.0"
+  },
   "devDependencies": {
+    "@types/debug": "0.0.30",
+    "@types/express": "^4.11.1",
+    "@types/mocha": "^5.2.0",
+    "@types/morgan": "^1.7.35",
     "@types/node": "8.5.7",
+    "@types/supertest": "^2.0.4",
+    "mocha": "^5.1.1",
+    "supertest": "^3.0.0",
     "ts-node": "^4.1.0",
-    "typescript": "^2.6.2",
-    "tslint": "^5.8.0"
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2"
   },
   "keywords": [],
   "author": "sahilmalik@winsmarts.com",
