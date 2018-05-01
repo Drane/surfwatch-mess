@@ -1,6 +1,8 @@
 import * as supertest from 'supertest';
+import App from '../src/app';
 
-const request = supertest('http://localhost:3000');
+const request = supertest(App);
+// const request = supertest('http://localhost:3000');
 
 describe('Getting waves', () => {
 
