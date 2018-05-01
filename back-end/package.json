@@ -5,7 +5,7 @@
   "main": "server.js",
   "scripts": {
     "build": "tsc",
-    "start": "node src/server.js",
+    "start": "node --require ts-node/register src/server.ts",
     "test": "mocha --require ts-node/register test/**/*Spec.ts"
   },
   "dependencies": {

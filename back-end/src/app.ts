@@ -34,10 +34,20 @@ class App {
     // placeholder route handler
     router.get("/waves", (req, res, next) => {
       log("Getting \"/waves\" route.");
+      // res.set('Content-Type', 'application/json');
       res.json({
         message: "Hello Waves!"
       });
     });
+
+    // placeholder route handler
+    // router.post("/waves", (req, res, next) => {
+    //   log("Posting \"/waves\" route.");
+    //   res.set('Content-Type', 'application/json');
+    //   res.json({
+    //     message: "Hello Waves!"
+    //   });
+    // });
 
     this.express.use("/", router);
   }
