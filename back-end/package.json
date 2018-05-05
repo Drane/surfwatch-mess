@@ -6,20 +6,24 @@
   "scripts": {
     "build": "tsc",
     "start": "node --require ts-node/register src/server.ts",
+    "dev": "pm2 start src/server.ts --node-args=\"--require ts-node/register\" ",
     "test": "mocha --require ts-node/register test/**/*Spec.ts"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
     "debug": "^3.1.0",
     "express": "^4.16.3",
+    "express-jwt": "^5.3.1",
+    "express-jwt-authz": "^1.0.0",
+    "jwks-rsa": "^1.2.1",
     "mongoose": "^5.0.16",
     "morgan": "^1.9.0"
   },
   "devDependencies": {
-    "@types/debug": "0.0.30",
     "@types/express": "^4.11.1",
-    "@types/mocha": "^5.2.0",
     "@types/morgan": "^1.7.35",
+    "@types/debug": "0.0.30",
+    "@types/mocha": "^5.2.0",
     "@types/node": "8.5.7",
     "@types/supertest": "^2.0.4",
     "mocha": "^5.1.1",
