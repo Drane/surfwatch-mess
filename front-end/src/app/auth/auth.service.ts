@@ -7,13 +7,15 @@ import * as auth0 from 'auth0-js';
 @Injectable()
 export class AuthService {
 
+  requestedScopes = 'openid profile read:messages';
+
   auth0 = new auth0.WebAuth({
     clientID: AUTH_CONFIG.clientID,
     domain: AUTH_CONFIG.domain,
     responseType: 'token id_token',
-    audience: `https://${AUTH_CONFIG.domain}/userinfo`,
+    audience: AUTH_CONFIG.audience,
     redirectUri: AUTH_CONFIG.callbackURL,
-    scope: 'openid profile'
+    scope: this.requestedScopes
   });
 
   userProfile: any;
@@ -54,11 +56,18 @@ export class AuthService {
   }
 
   private setSession(authResult): void {
+    // If there is a value on the `scope` param from the authResult,
+    // use it to set scopes in the session for the user. Otherwise
+    // use the scopes as requested. If no scopes were requested,
+    // set it to nothing
+    const scopes = authResult.scope || this.requestedScopes || '';
+
     // Set the time that the access token will expire at
     const expiresAt = JSON.stringify((authResult.expiresIn * 1000) + new Date().getTime());
     localStorage.setItem('access_token', authResult.accessToken);
     localStorage.setItem('id_token', authResult.idToken);
     localStorage.setItem('expires_at', expiresAt);
+    localStorage.setItem('scopes', JSON.stringify(scopes));
   }
 
   public logout(): void {
@@ -66,6 +75,7 @@ export class AuthService {
     localStorage.removeItem('access_token');
     localStorage.removeItem('id_token');
     localStorage.removeItem('expires_at');
+    localStorage.removeItem('scopes');
     // Go back to the home route
     this.router.navigate(['/']);
   }
@@ -76,6 +86,35 @@ export class AuthService {
     const expiresAt = JSON.parse(localStorage.getItem('expires_at'));
     return new Date().getTime() < expiresAt;
   }
+
+  // public scheduleRenewal() {
+  //   if (!this.isAuthenticated()) return;
+
+  //   const expiresAt = JSON.parse(window.localStorage.getItem('expires_at'));
+
+  //   const source = Observable.of(expiresAt).flatMap(
+  //     expiresAt => {
+
+  //       const now = Date.now();
+
+  //       // Use the delay in a timer to
+  //       // run the refresh at the proper time
+  //       var refreshAt = expiresAt - (1000 * 30); // Refresh 30 seconds before expiry
+  //       return Observable.timer(Math.max(1, refreshAt - now));
+  //     });
+
+  //   // Once the delay time from above is
+  //   // reached, get a new JWT and schedule
+  //   // additional refreshes
+  //   this.refreshSubscription = source.subscribe(() => {
+  //     this.renewToken();
+  //   });
+  // }
+
+  // public unscheduleRenewal() {
+  //   if (!this.refreshSubscription) return;
+  //   this.refreshSubscription.unsubscribe();
+  // }
 
 }
 

@@ -3,9 +3,12 @@ import * as bodyParser from "body-parser";
 import * as logger from "morgan";
 import * as debug from "debug";
 import * as jwt from "express-jwt";
+import * as cors from 'cors';
 
 // declare var jwtAuthz: any;
-import * as jwtAuthz from "express-jwt-authz";
+
+// import * as jwtAuthz from "express-jwt-authz";
+const jwtAuthz = require('express-jwt-authz');
 
 import * as jwksRsa from "jwks-rsa";
 
@@ -28,7 +31,8 @@ class App {
   private middleware(): void {
     this.express.use(logger("dev"));
     this.express.use(bodyParser.json());
-    this.express.use(bodyParser.urlencoded({ extended: false }));
+    this.express.use(bodyParser.urlencoded({ extended: true }));
+    this.express.use(cors());
   }
 
   // Configure API endpoints.
@@ -51,7 +55,7 @@ class App {
       }),
 
       // Validate the audience and the issuer.
-      audience: "http://localhost:3000",
+      audience: "http://localhost:3000/secure",
       issuer: `https://prefabsoft.eu.auth0.com/`,
       algorithms: ["RS256"]
     });
@@ -69,12 +73,12 @@ class App {
       });
     });
 
-    router.get("/secure", checkJwt/* , checkScopes */, (req, res, next) => {
+    router.get("/secure", checkJwt, checkScopes, (req, res, next) => {
+    // router.get("/secure", checkJwt/* , checkScopes */, (req, res, next) => {
       log('Getting "/secure" route.');
       // res.set('Content-Type', 'application/json');
-      res.json({
-        message: "Hello Secured!"
-      });
+      // res.json({subscriptions: [{id: 1}, {id: 2}], error: 'none'});
+      res.status(200).send([{id: 1}, {id: 2}]);
     });
 
     // placeholder route handler

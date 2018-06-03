@@ -5,32 +5,35 @@
   "main": "server.js",
   "scripts": {
     "build": "tsc",
-    "start": "node --require ts-node/register src/server.ts",
-    "dev": "pm2 start src/server.ts --node-args=\"--require ts-node/register\" ",
+    "start": "nodemon --require ts-node/register src/server.ts",
+    "dev": "pm2 start src/server.ts --watch",
     "test": "mocha --require ts-node/register test/**/*Spec.ts"
   },
   "dependencies": {
     "body-parser": "^1.18.2",
+    "cors": "^2.8.4",
     "debug": "^3.1.0",
     "express": "^4.16.3",
     "express-jwt": "^5.3.1",
     "express-jwt-authz": "^1.0.0",
     "jwks-rsa": "^1.2.1",
     "mongoose": "^5.0.16",
-    "morgan": "^1.9.0"
+    "morgan": "^1.9.0",
+    "typescript-tools": "^0.3.1"
   },
   "devDependencies": {
-    "@types/express": "^4.11.1",
-    "@types/morgan": "^1.7.35",
+    "@types/cors": "^2.8.4",
     "@types/debug": "0.0.30",
+    "@types/express": "^4.11.1",
     "@types/mocha": "^5.2.0",
+    "@types/morgan": "^1.7.35",
     "@types/node": "8.5.7",
     "@types/supertest": "^2.0.4",
     "mocha": "^5.1.1",
     "supertest": "^3.0.0",
     "ts-node": "^4.1.0",
     "tslint": "^5.8.0",
-    "typescript": "^2.6.2"
+    "typescript": "^2.8.3"
   },
   "keywords": [],
   "author": "sahilmalik@winsmarts.com",
