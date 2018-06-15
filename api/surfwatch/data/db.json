@@ -1,0 +1,10 @@
+{
+  "ids": {
+    "Buoy": 2
+  },
+  "models": {
+    "Buoy": {
+      "1": "{\"placeName\":\"Oostende\"}"
+    }
+  }
+}
