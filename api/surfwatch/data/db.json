@@ -4,7 +4,8 @@
   },
   "models": {
     "Buoy": {
-      "1": "{\"placeName\":\"Oostende\"}"
+      "1": "{\"placeName\":\"Oostende\"}",
+      "2": "{\"placeName\":\"Scheveningen\"}"
     }
   }
 }

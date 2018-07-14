@@ -15,14 +15,13 @@ export class Buoy extends Entity {
   @property({required: false})
   desc?: string;
 
-//   constructor(placeName: string, latitude: number, longitude: number) {
-//     super();
-//     this.placeName = placeName;
-//     this.location = new Location(latitude, longitude);
-//   }
+    // constructor(placeName: string, latitude: number, longitude: number) {
+    //   super();
+    //   this.placeName = placeName;
+    //   this.location = new Location(latitude, longitude);
+    // }
 
   getId() {
     return this.placeName;
   }
-
 }

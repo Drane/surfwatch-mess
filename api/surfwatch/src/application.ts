@@ -3,16 +3,22 @@ import {RestApplication, RestServer, RestBindings} from '@loopback/rest';
 import {MySequence} from './sequence';
 import {db} from './datasources/db.datasource';
 
+/* tslint:disable:no-unused-variable */
 // Binding and Booter imports are required to infer types for BootMixin!
-import {BootMixin} from '@loopback/boot';
+import {BootMixin, Booter, Binding} from '@loopback/boot';
 
 // juggler imports are required to infer types for RepositoryMixin!
 import {
+  Class,
+  Repository,
   RepositoryMixin,
   juggler,
 } from '@loopback/repository';
+/* tslint:enable:no-unused-variable */
 
-export class SurfwatchApplication extends BootMixin(RepositoryMixin(RestApplication)) {
+export class SurfwatchApplication extends BootMixin(
+  RepositoryMixin(RestApplication),
+) {
   constructor(options?: ApplicationConfig) {
     super(options);
 
