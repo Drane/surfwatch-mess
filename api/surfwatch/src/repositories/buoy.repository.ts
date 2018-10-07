@@ -14,11 +14,11 @@ export class BuoyRepository extends DefaultCrudRepository<
   constructor(
     @inject('datasources.db') protected datasource: juggler.DataSource,
     @repository.getter(MeasurementRepository)
-    protected measurementRepositoryGetter: Getter<MeasurementRepository>
+    getMeasurementRepository: Getter<MeasurementRepository>
   ) {
     super(Buoy, datasource);
 
-    this.measurements = this._createHasManyRepositoryFactoryFor('measurements', measurementRepositoryGetter);
+    this.measurements = this._createHasManyRepositoryFactoryFor('measurements', getMeasurementRepository);
   }
 
   public findByPlaceName(placeName: string){

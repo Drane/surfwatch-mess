@@ -17,13 +17,14 @@ export class Buoy extends Entity {
   })
   placeName?: string;
 
-  @hasMany(() => Measurement)
+  @hasMany(() => Measurement, {keyTo: 'buoyId'})
   measurements: Measurement[];
   
   // @property({required: true, id: true})
   // placeName: string;
   @property({required: false})
   location: Location;
+
   @property({type: 'string', required: false})
   description?: string;
 
@@ -33,9 +34,9 @@ export class Buoy extends Entity {
   //   this.location = new Location(latitude, longitude);
   // }
 
-  getId() {
-    return this.id;
-  }
+  // getId() {
+  //   return this.id;
+  // }
 
   constructor(data?: Partial<Buoy>) {
     super(data);
