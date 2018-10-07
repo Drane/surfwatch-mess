@@ -2,12 +2,26 @@
   "version": "0.2.0",
   "configurations": [
     {
-      "name": "Current TS File",
+      "name": "Current TS File back-end",
       "type": "node",
       "request": "launch",
       "args": ["../${relativeFile}", "--colors"],
       "runtimeArgs": ["-r", "ts-node/register"],
       "cwd": "${workspaceRoot}/back-end",
+      "protocol": "inspector",
+      "console": "integratedTerminal",
+      "internalConsoleOptions": "openOnSessionStart",
+      "env": {
+        "NODE_ENV": "development"
+      },
+      "envFile": "${workspaceFolder}/back-end/.env",
+    },
+    {
+      "name": "Current TS File API",
+      "type": "node",
+      "request": "launch",
+      "args": ["../../${relativeFile}", "--colors"],
+      "cwd": "${workspaceRoot}/api/surfwatch",
       "protocol": "inspector",
       "console": "integratedTerminal",
       "internalConsoleOptions": "openOnSessionStart",

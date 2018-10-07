@@ -1,6 +1,6 @@
 import {createClientForHandler, supertest} from '@loopback/testlab';
 import {RestServer} from '@loopback/rest';
-import {SurfwatchApplication} from '../';
+import {SurfwatchApplication} from '../..';
 
 describe('PingController', () => {
   let app: SurfwatchApplication;
@@ -31,8 +31,9 @@ describe('PingController', () => {
   function givenAnApplication() {
     app = new SurfwatchApplication({
       rest: {
-        port: 0,
+        port: 0
       },
+      disableConsoleLog: true
     });
   }
 
