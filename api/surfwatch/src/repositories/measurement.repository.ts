@@ -20,6 +20,6 @@ export class MeasurementRepository extends DefaultCrudRepository<
   ) {
     super(Measurement, datasource);
 
-    this.buoy = this._createBelongsToAccessorFor('buoyId', buoyRepositoryGetter);
+    this.buoy = this._createBelongsToAccessorFor('buoyPlaceName', buoyRepositoryGetter);
   }
 }

@@ -6,18 +6,12 @@ import { Measurement } from './measurement.model';
 export class Buoy extends Entity {
 
   @property({
-    type: 'number',
-    id: true,
-  })
-  id?: number;
-
-  @property({
     type: 'string',
-    // id: true,
+    id: true,
   })
   placeName?: string;
 
-  @hasMany(() => Measurement, {keyTo: 'buoyId'})
+  @hasMany(() => Measurement, {keyTo: 'buoyPlaceName'})
   measurements: Measurement[];
   
   // @property({required: true, id: true})

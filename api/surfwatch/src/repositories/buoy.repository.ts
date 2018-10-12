@@ -6,10 +6,10 @@ import { MeasurementRepository } from './measurement.repository';
 
 export class BuoyRepository extends DefaultCrudRepository<
   Buoy,
-  typeof Buoy.prototype.id
+  typeof Buoy.prototype.placeName
 > {
 
-  public readonly measurements: HasManyRepositoryFactory<Measurement, typeof Buoy.prototype.id>;
+  public readonly measurements: HasManyRepositoryFactory<Measurement, typeof Buoy.prototype.placeName>;
 
   constructor(
     @inject('datasources.db') protected datasource: juggler.DataSource,

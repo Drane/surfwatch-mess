@@ -11,9 +11,9 @@ export class BuoyController {
     return this.buoyRepo.find();
   }
 
-  @get('/buoy/{id}')
-  findById(@param.path.string('id') id: number): Promise<Buoy> {
-    return this.buoyRepo.findById(id);
+  @get('/buoy/{placeName}')
+  findById(@param.path.string('placeName') placeName: string): Promise<Buoy> {
+    return this.buoyRepo.findById(placeName);
     // return new Promise((resolve, reject) => resolve(new Buoy()));
   }
 }

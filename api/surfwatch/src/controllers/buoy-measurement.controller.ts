@@ -8,12 +8,12 @@ export class MeasurementController {
   // constructor(@repository(MeasurementRepository) protected measurementRepo: MeasurementRepository) {}
   constructor(@repository(BuoyRepository) protected buoyRepo: BuoyRepository) {}
 
-  @get('/buoy/{id}/measurements')
+  @get('/buoy/{placeName}/measurements')
   async find(
-    @param.path.number('id') id: number, 
+    @param.path.string('placeName') placeName: string, 
     @param.query.string('filter') filter?: Filter
   ): Promise<Measurement[]> {
 
-    return await this.buoyRepo.measurements(id).find(filter);
+    return await this.buoyRepo.measurements(placeName).find(filter);
   }
 }

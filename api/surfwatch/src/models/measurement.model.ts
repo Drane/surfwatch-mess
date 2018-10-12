@@ -17,11 +17,7 @@ export class Measurement extends Entity{
   peakFrequency: number;
   
   @belongsTo(() => Buoy)
-  buoyId: number;
-  
-  getId() {
-    return this.id;
-  }
+  buoyPlaceName: string;
 
   constructor(data?: Partial<Measurement>) {
     super(data);
