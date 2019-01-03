@@ -23,4 +23,3 @@ TODO:
 DONE:
 -----
 * egghead.io lessons => https://egghead.io/series/angular-2-fundamentals
-* nothing
