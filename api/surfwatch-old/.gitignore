@@ -61,4 +61,10 @@ typings/
 api-docs/
 
 # Transpiled JavaScript files from Typescript
-/dist
+dist/
+
+# Transpiled JavaScript files from Typescript
+dist8/
+
+# Transpiled JavaScript files from Typescript
+dist10/

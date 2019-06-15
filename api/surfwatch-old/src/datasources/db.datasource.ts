@@ -3,7 +3,7 @@ import {juggler} from '@loopback/repository';
 
 const dsConfigPath = path.resolve(
   __dirname,
-  '../../config/datasources.json',
+  '../../../config/datasources.json',
 );
 const config = require(dsConfigPath);
 
